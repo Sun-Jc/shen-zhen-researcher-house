@@ -1,4 +1,4 @@
-### Model
+## Model
 
 In this model, we analyze the strategic interactions between two types of players in the Optimistic Rollup system: *proposers* and *validators*. The game is defined as follows:
 
@@ -18,10 +18,10 @@ In this model, we analyze the strategic interactions between two types of player
   - The proposer can adopt a mixed strategy where it chooses to be honest and to attack with probability $\beta$ and $1-\beta$, respectively.
 - **Payoff**
   - **Staking Rule**:
-    - **Validators** must stake an amount denoted by $V$ to participate in the validation process. This stake acts as collateral to ensure that validators act honestly.
+    - **Validators** must stake an amount denoted by $V$ to participate in the validation process. This stake acts as collateral to ensure that validators act honestly. 
     - **The Proposer** is required to stake an amount denoted by $S$ to submit transactions. This stake serves as a guarantee of their commitment to proposing valid transactions and disincentivizes malicious behavior.
   - **Reward Rule**:
-    - **Validators** who correctly verify transactions receive a reward denoted by $T$, which represents a portion of transaction fees or other incentives provided by the system.
+    - **Validators** who correctly verify transactions receive a reward denoted by $T$, which represents a portion of transaction fees or other incentives provided by the system.  Notably, if there are multiply validators correctly verify, each validator receives a portion of the reward $T$ proportional to their deposit amount.
     - **The Proposer** who submits valid transactions receives a reward denoted by $B$, which is based on transaction fees or a fixed incentive per batch of transactions proposed.
   - **Slash Rule**:
     - **Validators** are subject to slashing if they are found to be malicious or fail to perform their verification duties. This involves forfeiting a portion of their staked amount,  $f_p V$, as a penalty.
@@ -29,9 +29,47 @@ In this model, we analyze the strategic interactions between two types of player
   - **Verification Cost**:
     - **Honest Verification** incurs a cost denoted by $C$, which includes the computational resources and time required for validators to verify transactions. This cost is borne by validators who choose to act honestly.
   - **Malicious Block Value**:
+    
     - The value of a Malicious Block is denoted by $Z$ which represents the potential gains an attacker could achieve by submitting fraudulent transactions.
+    
+  - **Payoff Matrix**:
+    
+    We assume that \( $m$ \) out of \( $n$ \) validators choose to verify. The first number indicates the utility for the proposer, while the second number represents the utility for the validators.
+    
+    <table>
+        <tr>
+            <th></th>
+            <th>Honest Proposing</th>
+            <th colspan="2">Attack</th>
+        </tr>
+        <tr>
+            <td>Free Riding</td>
+            <td rowspan="2">$(B, \frac{T}{n})$</td>
+            <td>Slashed</td>
+            <td>$(-S, -f_pV)$</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Not Slashed</td>
+            <td>$(Z, \frac{T}{n})$</td>
+        </tr>
+        <tr>
+            <td>Honest Verification</td>
+            <td>$(B, \frac{T}{n}-C)$</td>
+            <td colspan="2">$(-S, \frac{\delta S}{m} -C)$</td>
+        </tr>
+    </table>
+    
 
 ## Results
+
+**Lemma**:
+
+- In equilibrium, the proposer does not play a pure strategy.
+- In equilibrium with $n$ validators, there is no strategy where all validators are free-riders or one validator purely verifies.
+- In equilibrium with $n$ validators, the validators who choose a mixed strategy will exhibit at most two types of behavior.
+
+### Conclusion on $n$ Validators
 
 **Definition of $m-NE$**:
 
