@@ -36,30 +36,11 @@ In this model, we analyze the strategic interactions between two types of player
     
     We assume that \( $m$ \) out of \( $n$ \) validators choose to verify. The first number indicates the utility for the proposer, while the second number represents the utility for the validators.
     
-    <table>
-        <tr>
-            <th></th>
-            <th>Honest Proposing</th>
-            <th colspan="2">Attack</th>
-        </tr>
-        <tr>
-            <td>Free Riding</td>
-            <td rowspan="2">$(B, \frac{T}{n})$</td>
-            <td>Slashed</td>
-            <td>$(-S, -f_pV)$</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>Not Slashed</td>
-            <td>$(Z, \frac{T}{n})$</td>
-        </tr>
-        <tr>
-            <td>Honest Verification</td>
-            <td>$(B, \frac{T}{n}-C)$</td>
-            <td colspan="2">$(-S, \frac{\delta S}{m} -C)$</td>
-        </tr>
-    </table>
-    
+    |                                 | Honest Proposing     | Attacking                     |
+    | ------------------------------- | -------------------- | ----------------------------- |
+    | **Free Riding but Slashed**     | $(B, \frac{T}{n})$   | $(-S, -f_pV)$                 |
+    | **Free Riding and not Slashed** | $(B, \frac{T}{n})$   | $(Z, \frac{T}{n})$            |
+    | **Honest Verification**         | $(B, \frac{T}{n}-C)$ | $(-S, \frac{\delta S}{m} -C)$ |
 
 ## Results
 
